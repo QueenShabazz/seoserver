@@ -83,7 +83,7 @@ public class MainController {
 	// 	userRepository.save(n);
 	// 	return "Saved";
 	// }
-	return restTemplate.getForObject(url, String.class).articles;
+	return restTemplate.getForObject(url, String.class);
 	}
 	
 
