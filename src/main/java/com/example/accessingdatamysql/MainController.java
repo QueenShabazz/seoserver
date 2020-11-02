@@ -31,7 +31,7 @@ public class MainController {
 			@RequestParam(required = false, name = "description") String description,
 			@RequestParam(required = false, name = "url") String url,
 			@RequestParam(required = false, name = "urlToImage") String urlToImage,
-			@RequestParam(required = false, name = "published", value="date") Date published)
+			@RequestParam(required = false, name = "published") Date published)
 		  {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
