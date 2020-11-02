@@ -2,8 +2,6 @@ package com.example.accessingdatamysql;
 
 import java.util.Date;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -35,7 +33,7 @@ public class MainController {
 			@RequestParam(required = false, name = "description") String description,
 			@RequestParam(required = false, name = "url") String url,
 			@RequestParam(required = false, name = "urlToImage") String urlToImage,
-			@RequestParam(required = false, name = "published") Date published)
+			@RequestParam(required = false, name = "published", value="date") Date published)
 		  {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
@@ -60,8 +58,16 @@ public class MainController {
 	// BELOW CODE TO MAP FROM EXTERNAL API TO DATABASE
 	
 	@GetMapping(path = "/test")
-    
-	public @ResponseBody List getAll() {
+//     ResponseEntity<Object[]> responseEntity = restTemplate.getForEntity(urlGETList, Object[].class);
+// Object[] objects = responseEntity.getBody();
+// MediaType contentType = responseEntity.getHeaders().getContentType();
+// HttpStatus statusCode = responseEntity.getStatusCode();
+// public @ResponseBody List<Object> findAllObjects() {
+
+//     List<Object> objects = new ArrayList<Object>();
+//     return objects;
+// }
+	public @ResponseBody Object getAll() {
 		String url = "https://newsapi.org/v2/everything?q=('+search%20+engine%20+optimization' OR '+SEO')&sortBy=publishedAt&language=en&apiKey=f5ae70fe95da4ca892c7027bd1ee6b10";
 		RestTemplate restTemplate = new RestTemplate();
  
@@ -87,7 +93,7 @@ public class MainController {
 	// 	userRepository.save(n);
 	// 	return "Saved";
 	// }
-	return restTemplate.getForObject(url, List.class);
+	return restTemplate.getForObject(url, Object.class);
 	}
 	
 
