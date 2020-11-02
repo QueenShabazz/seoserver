@@ -2,6 +2,8 @@ package com.example.accessingdatamysql;
 
 import java.util.Date;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+
+import antlr.collections.List;
 
 
 
@@ -57,7 +61,7 @@ public class MainController {
 	
 	@GetMapping(path = "/test")
     
-	public @ResponseBody String getAll() {
+	public @ResponseBody List getAll() {
 		String url = "https://newsapi.org/v2/everything?q=('+search%20+engine%20+optimization' OR '+SEO')&sortBy=publishedAt&language=en&apiKey=f5ae70fe95da4ca892c7027bd1ee6b10";
 		RestTemplate restTemplate = new RestTemplate();
  
@@ -83,7 +87,7 @@ public class MainController {
 	// 	userRepository.save(n);
 	// 	return "Saved";
 	// }
-	return restTemplate.getForObject(url, String.class);
+	return restTemplate.getForObject(url, List.class);
 	}
 	
 
