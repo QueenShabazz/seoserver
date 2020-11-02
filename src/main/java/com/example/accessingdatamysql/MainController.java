@@ -42,7 +42,7 @@ public class MainController {
 		n.setUrl(url);
 		n.setDescription(description);
 		n.setUrlToImage(urlToImage);
-		n.setPublished(published);
+		//n.setPublished(published);
 		userRepository.save(n);
 		return "Saved";
 	}
